@@ -6,5 +6,5 @@ metadata:
 data:
   index.html: |
     <html>
-    <h1>Hi! This is Deployment 1! </h1>
+    <h1>Hi! This is Deployed by Sulbi </h1>
     </html
