@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment1
+  name: nginx-deployment
   labels:
     app: nginx
 spec:
@@ -26,4 +26,4 @@ spec:
       volumes:
         - name: nginx-index-file
           configMap:
-            name: index-html-configmap1
+            name: index-html-configmap
