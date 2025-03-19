@@ -8,7 +8,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: nginx-deployment
+    app: nginx
   ports:
   - port: 80
     targetPort: 80
