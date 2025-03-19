@@ -14,8 +14,9 @@ spec:
       labels:
         app: nginx
     spec:
+      serviceAccountName: secrets-manager-access-sa
       containers:
-      - name: nginx
+      - name: nginx-deployment
         image: nginx:latest
         ports:
         - containerPort: 80
@@ -23,7 +24,34 @@ spec:
             - name: nginx-index-file
               mountPath: /usr/share/nginx/html/index.html
               subPath: index.html
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+        env: 
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: k8s-secret
+                key: dbusername
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: k8s-secret
+                key: dbpassword
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "10m"
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
       volumes:
         - name: nginx-index-file
           configMap:
             name: index-html-configmap
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: my-app-secret
