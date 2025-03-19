@@ -32,12 +32,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: k8s-secret
-                key: dbusername
+                key: username
           - name: DB_PASS
             valueFrom:
               secretKeyRef:
                 name: k8s-secret
-                key: dbpassword
+                key: password
         resources:
           requests:
             memory: "32Mi"
