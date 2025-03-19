@@ -17,7 +17,7 @@ spec:
       serviceAccountName: secrets-manager-access-sa
       containers:
       - name: nginx-deployment
-        image: nginx:latest
+        image: nginx:1.26.3
         ports:
         - containerPort: 80
         volumeMounts:
